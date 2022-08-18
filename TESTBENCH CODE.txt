@@ -1,0 +1,71 @@
+`timescale 1ns / 1ps
+
+////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer:
+//
+// Create Date:   12:10:27 08/18/2022
+// Design Name:   updowncountms
+// Module Name:   /home/ise/updowncountms/t_updownms.v
+// Project Name:  updowncountms
+// Target Device:  
+// Tool versions:  
+// Description: 
+//
+// Verilog Test Fixture created by ISE for module: updowncountms
+//
+// Dependencies:
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+////////////////////////////////////////////////////////////////////////////////
+
+module t_updownms;
+
+	// Inputs
+	reg clk;
+	reg rst;
+	reg select;
+	reg I0;
+	reg I1;
+
+	// Outputs
+	wire [3:0] count;
+	wire mout;
+
+	// Instantiate the Unit Under Test (UUT)
+	updowncountms uut (
+		.clk(clk), 
+		.rst(rst), 
+		.count(count), 
+		.select(select), 
+		.mout(mout), 
+		.I0(I0), 
+		.I1(I1)
+	);
+
+	initial begin
+		// Initialize Inputs
+		clk = 0;
+		rst = 0;
+		select = 0;
+		I0 = 0;
+		I1 = 1;
+
+		// Wait 100 ns for global reset to finish
+		#0.01;
+		clk=1;
+		#80;
+		select = 1;rst=1;
+		//#80;
+		rst = 0;
+        
+		// Add stimulus here
+
+	end
+	always #5 clk = ~clk;
+      
+endmodule
+
